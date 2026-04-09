@@ -2,10 +2,174 @@
 <html lang="fi">
   <head>
     <meta charset="UTF-8" />
-    <title>Padel sovellus</title>
-    <script type="module" src="/main.jsx"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kauhapadel</title>
+    <style>
+      :root {
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --text: #0f172a;
+        --muted: #64748b;
+        --border: #e2e8f0;
+        --primary: #0f172a;
+        --primaryText: #ffffff;
+        --soft: #f1f5f9;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      .header, .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+      }
+      .header {
+        padding: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .card { padding: 20px; }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 16px;
+      }
+      .event-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 18px;
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .col { display: flex; flex-direction: column; gap: 8px; }
+      input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        font-size: 14px;
+        background: white;
+      }
+      textarea { min-height: 90px; resize: vertical; }
+      button, .linkbtn {
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 14px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: var(--primaryText);
+      }
+      .btn-secondary {
+        background: var(--soft);
+        color: var(--text);
+      }
+      .btn-danger {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      .pill {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--soft);
+        font-size: 12px;
+      }
+      .muted { color: var(--muted); font-size: 14px; }
+      .participants {
+        background: var(--soft);
+        border-radius: 14px;
+        padding: 12px;
+        margin-top: 12px;
+      }
+      .participant-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      .participant {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+      .top-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .hidden { display: none !important; }
+      .section-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0 0 8px;
+      }
+      .mb16 { margin-bottom: 16px; }
+      .mb24 { margin-bottom: 24px; }
+      .auth-wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 24px;
+      }
+      @media (max-width: 800px) {
+        .auth-wrap { grid-template-columns: 1fr; }
+      }
+      .notice {
+        margin-top: 10px;
+        padding: 12px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 12px;
+        font-size: 14px;
+      }
+      .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+      .tab.active {
+        background: var(--primary);
+        color: white;
+      }
+      .panel.hidden { display: none; }
+      .small { font-size: 13px; }
+      .hr {
+        height: 1px;
+        background: var(--border);
+        margin: 16px 0;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="/main.js"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="app"></div>
   </body>
 </html>
