@@ -25,7 +25,23 @@ function renderNameInput() {
 }
 
 async function renderEvents() {
-  const { data: events } = await supabase.from("events").select("*");
+  const { data: events, error } = await supabase.from("events").select("*");
+
+  if (error) {
+    app.innerHTML = `<div style="color:red;padding:40px">${error.message}</div>`;
+    return;
+  }
+
+  if (!events || events.length === 0) {
+    app.innerHTML = `
+      <div style="padding:40px;font-family:Arial">
+        <h1>Kauhapadel</h1>
+        <p>Hei ${name}</p>
+        <p>❗ Ei tapahtumia tietokannassa</p>
+      </div>
+    `;
+    return;
+  }
 
   app.innerHTML = `
     <div style="padding:40px;font-family:Arial">
